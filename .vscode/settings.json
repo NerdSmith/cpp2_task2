@@ -1,0 +1,19 @@
+{
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/cpp_tasks/cpp2_task2",
+			"binaryPath": "/home/cpp_tasks/cpp2_task2/main",
+			"binaryArgs": []
+		}
+	],
+	"files.associations": {
+		"*.tcc": "cpp",
+		"list": "cpp",
+		"vector": "cpp",
+		"stdexcept": "cpp",
+		"ostream": "cpp",
+		"sstream": "cpp",
+		"iosfwd": "cpp",
+		"iostream": "cpp"
+	}
+}

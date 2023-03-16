@@ -1,11 +1,12 @@
 #include "component.h"
+#include "container_component.h"
 #include <iostream>
 using namespace std;
 
-Component::Component(Component *parent) : Component(parent, 0, 0, 100, 100){};
+Component::Component(ContainerComponent *parent) : Component(parent, 0, 0, 100, 100){};
 
 Component::Component(
-	Component *parent,
+	ContainerComponent *parent,
 	int x,
 	int y,
 	int width,
@@ -14,13 +15,36 @@ Component::Component(
 	setParent(parent);
 }
 
-void Component::setParent(Component *newParent)
+ContainerComponent *Component::getParent()
 {
+	return this->parent;
+}
+
+void Component::setParent(ContainerComponent *newParent)
+{
+	if (!newParent)
+	{
+		return;
+	}
 	if (this == newParent)
 	{
 		throw invalid_argument("You can't set the parent of a component to the component itself!");
 	}
+	if (this->parent)
+	{
+		this->parent->removeChild(this);
+	}
+	if (!newParent->isPointIn(this->x, this->y))
+	{
+		throw invalid_argument("Can't set component outside parent component");
+	}
+	newParent->addChild(this);
 	this->parent = newParent;
+}
+
+bool Component::isPointIn(int x, int y)
+{
+	return (0 < x < this->width) && (0 < y < this->height);
 }
 
 string Component::getTypeString()
@@ -39,15 +63,71 @@ string Component::getPos()
 	return ss.str();
 }
 
+void Component::move(int newX, int newY)
+{
+	if (parent->isPointIn(newX, newY))
+	{
+		this->x = newX;
+		this->y = newY;
+	}
+	else
+	{
+		throw invalid_argument("Can't move component outside parent component");
+	}
+}
+
+void Component::resize(int newWidth, int newHeight)
+{
+	this->width = newWidth;
+	this->height = newHeight;
+}
+
+int Component::getX()
+{
+	return this->x;
+}
+
+int Component::getY()
+{
+	return this->y;
+}
+
+int Component::getWidth()
+{
+	return this->width;
+}
+
+int Component::getHeight()
+{
+	return this->height;
+}
+
+void Component::enable()
+{
+	this->active = true;
+}
+
+void Component::disable()
+{
+	this->active = false;
+}
+
+bool Component::isActive()
+{
+	return this->active;
+}
+
 string Component::toString()
 {
 	stringstream ss;
 	ss
-		<< this->getTypeString() << " in "
+		<< this->getTypeString() << " ("
+		<< (this->active ? "active" : "disable") << ") in "
 		<< this->getPos();
 	return ss.str();
 }
 
 Component::~Component()
 {
+	cout << "C destr \n";
 }
