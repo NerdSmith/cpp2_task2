@@ -55,7 +55,6 @@ string Frame::toString()
 {
 	return ContainerComponent::toString();
 }
-Frame::~Frame()
-{
-	cout << "F destr \n";
+Frame::~Frame(){
+	// cout << "F destr \n";
 };

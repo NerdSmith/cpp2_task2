@@ -34,6 +34,7 @@ public:
 public:
 	virtual string getTypeString();
 	virtual string toString();
+	virtual void printWithTree(int level);
 	string getPos();
 
 	void move(int newX, int newY);
@@ -47,6 +48,7 @@ public:
 	void enable();
 	void disable();
 	bool isActive();
+	virtual Component *getCompByCoord(int posX, int posY);
 
 	// bool operator==(Component &comp)
 	// {

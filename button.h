@@ -7,13 +7,13 @@
 class Button : public Clickable, public Label
 {
 public:
-	Button(ContainerComponent *parent, function<void()> func);
+	Button(ContainerComponent *parent, function<void(Component *)> func);
 	Button(ContainerComponent *parent,
 		   string text,
-		   function<void()> func);
+		   function<void(Component *)> func);
 	Button(ContainerComponent *parent,
 		   string text,
-		   function<void()> func,
+		   function<void(Component *)> func,
 		   int x,
 		   int y,
 		   int width,

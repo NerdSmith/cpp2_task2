@@ -16,5 +16,5 @@ string Panel::toString()
 
 Panel::~Panel()
 {
-	cout << "P destr \n";
+	// cout << "P destr \n";
 }

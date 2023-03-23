@@ -22,8 +22,11 @@ public:
 
 	void addChild(Component *comp);
 	void removeChild(Component *comp);
+	list<Component *> getChildren();
 
 	virtual string getTypeString();
 	virtual string toString();
+	virtual void printWithTree(int level);
+	virtual Component *getCompByCoord(int posX, int posY);
 	virtual ~ContainerComponent();
 };

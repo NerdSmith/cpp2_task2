@@ -65,6 +65,12 @@ string Component::getPos()
 
 void Component::move(int newX, int newY)
 {
+	if (!parent)
+	{
+		this->x = newX;
+		this->y = newY;
+		return;
+	}
 	if (parent->isPointIn(newX, newY))
 	{
 		this->x = newX;
@@ -117,6 +123,17 @@ bool Component::isActive()
 	return this->active;
 }
 
+Component *Component::getCompByCoord(int posX, int posY)
+{
+	int realX = posX - this->x;
+	int realY = posY - this->y;
+	if (((0 < realX) && (realX < this->width)) && ((0 < realY) && (realY < this->height)))
+	{
+		return this;
+	}
+	return nullptr;
+}
+
 string Component::toString()
 {
 	stringstream ss;
@@ -127,7 +144,12 @@ string Component::toString()
 	return ss.str();
 }
 
+void Component::printWithTree(int level)
+{
+	cout << string(level, '\t') << this->toString() << endl;
+}
+
 Component::~Component()
 {
-	cout << "C destr \n";
+	// cout << "C destr \n";
 }

@@ -32,5 +32,5 @@ string Label::toString()
 
 Label::~Label()
 {
-	cout << "L destr \n";
+	// cout << "L destr \n";
 }
