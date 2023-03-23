@@ -4,6 +4,11 @@
 			"cwd": "/home/cpp_tasks/cpp2_task2",
 			"binaryPath": "/home/cpp_tasks/cpp2_task2/main",
 			"binaryArgs": []
+		},
+		{
+			"cwd": "/home/cpp_tasks/task_2",
+			"binaryPath": "/home/cpp_tasks/task_2/main",
+			"binaryArgs": []
 		}
 	],
 	"files.associations": {
